@@ -1,6 +1,6 @@
 {
   "name": "element-plus",
-  "version": "0.0.0-dev.1",
+  "version": "2.10.5-0.0",
   "description": "A Component Library for Vue 3",
   "keywords": [
     "element-plus",
@@ -12,7 +12,7 @@
   ],
   "homepage": "https://element-plus.org/",
   "bugs": {
-    "url": "https://github.com/element-plus/element-plus/issues"
+    "url": "https://github.com/JinZhaoKai/element-plus-ext/issues"
   },
   "license": "MIT",
   "main": "lib/index.js",
@@ -63,7 +63,7 @@
   "jsdelivr": "dist/index.full.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/element-plus/element-plus.git"
+    "url": "git+https://github.com/JinZhaoKai/element-plus-ext.git"
   },
   "publishConfig": {
     "access": "public"
