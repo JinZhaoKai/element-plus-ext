@@ -76,6 +76,9 @@ export * from './anchor'
 export * from './segmented'
 export * from './mention'
 export * from './splitter'
+export * from './lsxm-magnifier'
+export * from './lsxm-magnifier-dialog'
+export * from './lsxm-magnifier-default-page'
 
 // plugins
 export * from './infinite-scroll'

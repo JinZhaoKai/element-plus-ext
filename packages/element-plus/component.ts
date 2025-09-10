@@ -109,6 +109,9 @@ import { ElAnchor, ElAnchorLink } from '@element-plus/components/anchor'
 import { ElSegmented } from '@element-plus/components/segmented'
 import { ElMention } from '@element-plus/components/mention'
 import { ElSplitter, ElSplitterPanel } from '@element-plus/components/splitter'
+import { ElLsxmMagnifier } from '@element-plus/components/lsxm-magnifier'
+import { ElLsxmMagnifierDialog } from '@element-plus/components/lsxm-magnifier-dialog'
+import { ElLsxmMagnifierDefaultPage } from '@element-plus/components/lsxm-magnifier-default-page'
 
 import type { Plugin } from 'vue'
 
@@ -221,4 +224,7 @@ export default [
   ElMention,
   ElSplitter,
   ElSplitterPanel,
+  ElLsxmMagnifier,
+  ElLsxmMagnifierDialog,
+  ElLsxmMagnifierDefaultPage,
 ] as Plugin[]

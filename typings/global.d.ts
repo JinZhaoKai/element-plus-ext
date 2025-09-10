@@ -108,6 +108,9 @@ declare module 'vue' {
     ElMention: typeof import('element-plus')['ElMention']
     ElSplitter: typeof import('element-plus')['ElSplitter']
     ElSplitterPanel: typeof import('element-plus')['ElSplitterPanel']
+    ElLsxmMagnifier: typeof import('element-plus')['ElLsxmMagnifier']
+    ElLsxmMagnifierDialog: typeof import('element-plus')['ElLsxmMagnifierDialog']
+    ElLsxmMagnifierDefaultPage: typeof import('element-plus')['ElLsxmMagnifierDefaultPage']
   }
 
   interface ComponentCustomProperties {
