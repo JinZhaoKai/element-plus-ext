@@ -369,5 +369,14 @@
         "promotion": "2.4.0"
       }
     ]
+  },
+  "lsxm-ext": {
+    "text": "LsxmExt",
+    "children": [
+      {
+        "link": "/lsxm-magnifier",
+        "text": "LsxmMagnifier"
+      }
+    ]
   }
 }
