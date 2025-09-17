@@ -6,6 +6,7 @@
       :width="dialogWidth"
       :close-on-click-modal="false"
       append-to-body
+      @close="onCancel"
     >
       <component
         :is="customPageComponent"
