@@ -31,7 +31,7 @@ export const lsxmMagnifierProps = buildProps({
    * @description 检索参数配置
    */
   searchParamProp: {
-    type: Array,
+    type: Array<{ label: string; value: string }>,
     default() {
       return []
     },
@@ -40,7 +40,7 @@ export const lsxmMagnifierProps = buildProps({
    * @description 表格列配置
    */
   tableColumnProp: {
-    type: Array,
+    type: Array<{ label: string; value: string }>,
     default() {
       return []
     },

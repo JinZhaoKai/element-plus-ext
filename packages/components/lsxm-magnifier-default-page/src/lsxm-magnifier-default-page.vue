@@ -6,7 +6,10 @@
         :key="item.value"
         :label="item.label"
       >
-        <el-input v-model="searchParams[item.value]" @blur="startSearch" />
+        <el-input
+          v-model="(searchParams as any)[item.value]"
+          @blur="startSearch"
+        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="startSearch"> 查询 </el-button>
@@ -65,8 +68,8 @@ defineOptions({
 const props = defineProps(lsxmMagnifierDefaultPageProps)
 
 const searchTableRef = ref()
-const searchParams = ref({})
-const tableData = ref([])
+const searchParams: any = ref({})
+const tableData: any = ref([])
 const loading = ref(false)
 // 已选行
 const selectedRow = ref(null)
@@ -85,18 +88,18 @@ const emit = defineEmits(lsxmMagnifierDefaultPageEmits)
  * 初始化查询参数
  */
 function initSearchParams() {
-  const obj = {}
+  const obj: any = {}
   props.searchParamProp.forEach((item) => {
     obj[item.value] = null
   })
   searchParams.value = obj
 }
 
-function tableSelectionChange(selection) {
+function tableSelectionChange(selection: any) {
   selectedRowList.value = selection
 }
 
-function tableRowClick(row) {
+function tableRowClick(row: never) {
   if (props.multiple) {
     const index = selectedRowList.value.indexOf(row)
     if (index > -1) {
@@ -117,7 +120,7 @@ function tableRowClick(row) {
   }
 }
 
-function tableRowDbClick(row) {
+function tableRowDbClick(row: never) {
   if (!props.multiple) {
     tableRowClick(row)
     triggerLsxmConfirm()
@@ -137,7 +140,7 @@ function loadTableData() {
   }
   if (props.tableRemoteMethod) {
     loading.value = true
-    props.tableRemoteMethod(params, (list, pageInfo) => {
+    props.tableRemoteMethod(params, (list: any, pageInfo: any) => {
       if (props.enablePage) {
         if (pageInfo) {
           if (Number.isInteger(pageInfo)) {
@@ -164,12 +167,12 @@ function clearSearchParams() {
   searchParams.value = {}
 }
 
-function handleCurrentPageChange(pageNo) {
+function handleCurrentPageChange(pageNo: any) {
   pagination.value.currentPage = pageNo
   loadTableData()
 }
 
-function handleSizeChange(pageSize) {
+function handleSizeChange(pageSize: any) {
   pagination.value.pageSize = pageSize
   loadTableData()
 }

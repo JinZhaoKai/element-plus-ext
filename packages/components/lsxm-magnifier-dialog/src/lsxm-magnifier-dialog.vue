@@ -5,6 +5,7 @@
       :title="dialogTitle"
       :width="dialogWidth"
       :close-on-click-modal="false"
+      append-to-body
     >
       <component
         :is="customPageComponent"

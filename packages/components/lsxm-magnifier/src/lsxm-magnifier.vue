@@ -28,7 +28,7 @@
         :label="item[labelKey]"
         :value="item[lsxmValueKey]"
       >
-        <el-row type="flex" justify="space-between">
+        <el-row>
           <el-col
             v-for="tableColumn in tableColumnProp"
             :key="tableColumn.value"
@@ -74,10 +74,10 @@ defineOptions({
 const attrs = useAttrs()
 const props = defineProps(lsxmMagnifierProps)
 
-const magnifierValue = ref(props.modelValue)
+const magnifierValue: any = ref(props.modelValue)
 const dialogVisible = ref(false)
-const searchParams = ref({})
-const options = ref([])
+const searchParams: any = ref({})
+const options: any = ref([])
 const total = ref(0)
 
 const emit = defineEmits(lsxmMagnifierEmits)
@@ -86,17 +86,17 @@ const emit = defineEmits(lsxmMagnifierEmits)
  * 初始化查询参数
  */
 function initSearchParams() {
-  const obj = {}
+  const obj: any = {}
   props.searchParamProp.forEach((item) => {
     obj[item.value] = null
   })
   searchParams.value = obj
 }
 
-function lsxmRemoteMethod(query) {
+function lsxmRemoteMethod(query: any) {
   const remoteMethod = attrs['remote-method']
   if (remoteMethod && typeof remoteMethod === 'function') {
-    remoteMethod(query, (array, pageInfo) => {
+    remoteMethod(query, (array: any, pageInfo: any) => {
       if (Array.isArray(array)) {
         options.value = array
         total.value = pageInfo.total
@@ -109,9 +109,9 @@ function lsxmRemoteMethod(query) {
   }
 }
 
-function handleLsxmConfirm(tabSelVal) {
+function handleLsxmConfirm(tabSelVal: any) {
   if (tabSelVal) {
-    let val = ''
+    let val: any
     if (Array.isArray(tabSelVal)) {
       val = tabSelVal.map((item) => item[props.lsxmValueKey])
     } else {
@@ -132,6 +132,6 @@ function handleLsxmConfirm(tabSelVal) {
 }
 
 initSearchParams()
-lsxmRemoteMethod()
+lsxmRemoteMethod('')
 // init here
 </script>

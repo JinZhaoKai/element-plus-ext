@@ -5,14 +5,14 @@ import type { ExtractPropTypes, __ExtractPublicPropTypes } from 'vue'
 export const lsxmMagnifierDefaultPageProps = buildProps({
   // 检索参数配置
   searchParamProp: {
-    type: Array,
+    type: Array<{ label: string; value: string }>,
     default() {
       return []
     },
   },
   // 表格列配置
   tableColumnProp: {
-    type: Array,
+    type: Array<{ label: string; value: string; width: any }>,
     default() {
       return []
     },
