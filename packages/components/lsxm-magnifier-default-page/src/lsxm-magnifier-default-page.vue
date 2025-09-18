@@ -186,6 +186,10 @@ function triggerLsxmConfirm() {
   )
 }
 
+defineExpose({
+  triggerLsxmConfirm,
+})
+
 initSearchParams()
 loadTableData()
 // init here
