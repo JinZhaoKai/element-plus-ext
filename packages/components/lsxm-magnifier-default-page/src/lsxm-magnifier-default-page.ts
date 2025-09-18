@@ -35,6 +35,8 @@ export type LsxmMagnifierDefaultPageProps = ExtractPropTypes<
 export type LsxmMagnifierDefaultPagePropsPublic = __ExtractPublicPropTypes<
   typeof lsxmMagnifierDefaultPageProps
 >
-
-export const lsxmMagnifierDefaultPageEmits = {}
+export const lsxmMagnifierDefaultPageEmits = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  'lsxm-confirm': (val: any) => true,
+}
 export type LsxmMagnifierDefaultPageEmits = typeof lsxmMagnifierDefaultPageEmits

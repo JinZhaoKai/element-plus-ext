@@ -122,6 +122,8 @@ function tableRowClick(row: never) {
 
 function tableRowDbClick(row: never) {
   if (!props.multiple) {
+    selectedRow.value = null
+    searchTableRef.value.setCurrentRow()
     tableRowClick(row)
     triggerLsxmConfirm()
   }

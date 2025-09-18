@@ -1,4 +1,5 @@
 import { buildProps } from '@element-plus/utils'
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
 import type { ExtractPropTypes, __ExtractPublicPropTypes } from 'vue'
 
@@ -89,6 +90,10 @@ export type LsxmMagnifierProps = ExtractPropTypes<typeof lsxmMagnifierProps>
 export type LsxmMagnifierPropsPublic = __ExtractPublicPropTypes<
   typeof lsxmMagnifierProps
 >
-
-export const lsxmMagnifierEmits = {}
+/* eslint-disable @typescript-eslint/no-unused-vars */
+export const lsxmMagnifierEmits = {
+  [UPDATE_MODEL_EVENT]: (val: LsxmMagnifierProps['modelValue']) => true,
+  [CHANGE_EVENT]: (val: LsxmMagnifierProps['modelValue']) => true,
+}
+/* eslint-enable @typescript-eslint/no-unused-vars */
 export type LsxmMagnifierEmits = typeof lsxmMagnifierEmits

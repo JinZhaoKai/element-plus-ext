@@ -63,9 +63,10 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, useAttrs } from 'vue'
+import { ref, useAttrs, watch } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import { lsxmMagnifierEmits, lsxmMagnifierProps } from './lsxm-magnifier'
+import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
 defineOptions({
   name: 'ElLsxmMagnifier',
@@ -81,6 +82,13 @@ const options: any = ref([])
 const total = ref(0)
 
 const emit = defineEmits(lsxmMagnifierEmits)
+
+watch(
+  () => props.modelValue,
+  (nv) => {
+    magnifierValue.value = nv
+  }
+)
 
 /**
  * 初始化查询参数
@@ -118,8 +126,8 @@ function handleLsxmConfirm(tabSelVal: any) {
       val = tabSelVal[props.lsxmValueKey]
     }
     magnifierValue.value = val
-    emit('input', val)
-    emit('change', val)
+    emit(UPDATE_MODEL_EVENT, val)
+    emit(CHANGE_EVENT, val)
     dialogVisible.value = false
 
     if (attrs && attrs.select) {
