@@ -85,10 +85,15 @@ const emit = defineEmits(lsxmMagnifierEmits)
 
 watch(
   () => props.modelValue,
-  (nv) => {
-    magnifierValue.value = nv
+  () => {
+    magnifierValue.value = props.modelValue
   }
 )
+
+watch(magnifierValue, () => {
+  emit(UPDATE_MODEL_EVENT, magnifierValue.value)
+  emit(CHANGE_EVENT, magnifierValue.value)
+})
 
 /**
  * 初始化查询参数

@@ -1,11 +1,19 @@
-import { buildProps } from '@element-plus/utils'
+import { buildProps, definePropType } from '@element-plus/utils'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
 
 import type { ExtractPropTypes, __ExtractPublicPropTypes } from 'vue'
+import type { OptionValue } from '@element-plus/components/select/src/type'
 
 export const lsxmMagnifierProps = buildProps({
   modelValue: {
-    required: true,
+    type: definePropType<OptionValue | OptionValue[] | null>([
+      Array,
+      String,
+      Number,
+      Boolean,
+      Object,
+    ]),
+    default: undefined,
   },
   /**
    * @description 输入框中返回的属性名
@@ -94,6 +102,9 @@ export type LsxmMagnifierPropsPublic = __ExtractPublicPropTypes<
 export const lsxmMagnifierEmits = {
   [UPDATE_MODEL_EVENT]: (val: LsxmMagnifierProps['modelValue']) => true,
   [CHANGE_EVENT]: (val: LsxmMagnifierProps['modelValue']) => true,
+  'remove-tag': (val: unknown) => true,
+  focus: (evt: FocusEvent) => evt instanceof FocusEvent,
+  blur: (evt: FocusEvent) => evt instanceof FocusEvent,
 }
 /* eslint-enable @typescript-eslint/no-unused-vars */
 export type LsxmMagnifierEmits = typeof lsxmMagnifierEmits
