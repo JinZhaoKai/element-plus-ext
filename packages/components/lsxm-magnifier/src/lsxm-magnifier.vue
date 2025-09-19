@@ -49,6 +49,8 @@
     </el-select>
     <el-lsxm-magnifier-dialog
       v-model="dialogVisible"
+      :dialog-title="dialogTitle"
+      :dialog-width="dialogWidth"
       :custom-page-component="customPageComponent"
       :search-param-prop="searchParamProp"
       :table-column-prop="tableColumnProp"
