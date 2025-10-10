@@ -111,6 +111,7 @@ declare module 'vue' {
     ElLsxmMagnifier: typeof import('element-plus')['ElLsxmMagnifier']
     ElLsxmMagnifierDialog: typeof import('element-plus')['ElLsxmMagnifierDialog']
     ElLsxmMagnifierDefaultPage: typeof import('element-plus')['ElLsxmMagnifierDefaultPage']
+    ElLsxmTable: typeof import('element-plus')['ElLsxmTable']
   }
 
   interface ComponentCustomProperties {

@@ -112,6 +112,7 @@ import { ElSplitter, ElSplitterPanel } from '@element-plus/components/splitter'
 import { ElLsxmMagnifier } from '@element-plus/components/lsxm-magnifier'
 import { ElLsxmMagnifierDialog } from '@element-plus/components/lsxm-magnifier-dialog'
 import { ElLsxmMagnifierDefaultPage } from '@element-plus/components/lsxm-magnifier-default-page'
+import { ElLsxmTable } from '@element-plus/components/lsxm-table'
 
 import type { Plugin } from 'vue'
 
@@ -227,4 +228,5 @@ export default [
   ElLsxmMagnifier,
   ElLsxmMagnifierDialog,
   ElLsxmMagnifierDefaultPage,
+  ElLsxmTable,
 ] as Plugin[]

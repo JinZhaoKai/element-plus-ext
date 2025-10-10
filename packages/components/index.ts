@@ -79,6 +79,7 @@ export * from './splitter'
 export * from './lsxm-magnifier'
 export * from './lsxm-magnifier-dialog'
 export * from './lsxm-magnifier-default-page'
+export * from './lsxm-table'
 
 // plugins
 export * from './infinite-scroll'
