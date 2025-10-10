@@ -376,6 +376,10 @@
       {
         "link": "/lsxm-magnifier",
         "text": "LsxmMagnifier"
+      },
+      {
+        "link": "/lsxm-table",
+        "text": "LsxmTable"
       }
     ]
   }
