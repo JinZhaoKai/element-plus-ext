@@ -86,7 +86,7 @@ function initSortable() {
   // 需要支持拖动效果的列表容器，在这里我们设置为el-table组件的tbody，
   // 注意：最前面的一段为前面el-table的class: draggable-table，主要为了防止如果页面有多个table，多个table同时实现拖拽效果
   // 当然，如果多个table都需要拖拽效果，选择器中最前面的.draggable-table可以去除。
-  const tr = document.querySelector(
+  const tr: any = document.querySelector(
     '.el-lsxm-table .draggable .el-table__header-wrapper thead tr'
   )
   Sortable.create(tr, {
@@ -105,7 +105,7 @@ function initSortable() {
  * 拖动结束
  * @param e
  */
-function sortableOnEnd(e) {
+function sortableOnEnd(e: any) {
   // 得到当前表格列移动的索引。
   // 这是表格列的索引，不一定是动态表格的索引，因为表格选择列、序号列不在动态表格中，如果直接使用表格索引，索引会不一致。
   const { newIndex, oldIndex } = e
@@ -145,7 +145,7 @@ function sortableOnEnd(e) {
  * @param evt
  * @returns {boolean|number} false：取消停靠；-1：在目标前插入；1：在目标后插入。
  */
-function sortableOnMove(evt) {
+function sortableOnMove(evt: any) {
   // 不允许停靠在标签黑名单中
   if (Sortable.utils.is(evt.related, props.filterDraggableSelector)) {
     return false
@@ -159,7 +159,7 @@ function sortableOnMove(evt) {
  *
  * @param columns
  */
-function defaultColumnsChange(columns) {
+function defaultColumnsChange(columns: any) {
   // 如果传递了函数，那么使用用户自定义的函数
   if (typeof props.handleColumnsChange === 'function') {
     props.handleColumnsChange(columns)
@@ -173,7 +173,12 @@ function defaultColumnsChange(columns) {
  * @param column 列
  * @param event event
  */
-function defaultColumnWidthChange(newWidth, oldWidth, column, event) {
+function defaultColumnWidthChange(
+  newWidth: string,
+  oldWidth: string,
+  column: any,
+  event: any
+) {
   // 如果传递了函数，那么使用用户自定义的函数
   if (typeof props.headerColumnWidthChange === 'function') {
     props.headerColumnWidthChange(newWidth, oldWidth, column, event)

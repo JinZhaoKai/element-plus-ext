@@ -86,6 +86,7 @@
     "@popperjs/core": "npm:@sxzz/popperjs-es@^2.11.7",
     "@types/lodash": "^4.14.182",
     "@types/lodash-es": "^4.17.6",
+    "@types/sortablejs": "^1.15.8",
     "@vueuse/core": "^9.1.0",
     "async-validator": "^4.2.5",
     "dayjs": "^1.11.13",
@@ -94,7 +95,8 @@
     "lodash-es": "^4.17.21",
     "lodash-unified": "^1.0.2",
     "memoize-one": "^6.0.0",
-    "normalize-wheel-es": "^1.2.0"
+    "normalize-wheel-es": "^1.2.0",
+    "sortablejs": "^1.15.6"
   },
   "devDependencies": {
     "@types/node": "*",
