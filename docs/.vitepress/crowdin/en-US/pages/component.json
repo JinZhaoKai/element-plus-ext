@@ -374,12 +374,20 @@
     "text": "LsxmExt",
     "children": [
       {
+        "link": "/lsxm-table",
+        "text": "DraggableTable"
+      },
+      {
         "link": "/lsxm-magnifier",
         "text": "LsxmMagnifier"
       },
       {
-        "link": "/lsxm-table",
-        "text": "LsxmTable"
+        "link": "/lsxm-magnifier-dialog",
+        "text": "LsxmMagnifierDialog"
+      },
+      {
+        "link": "/lsxm-magnifier-page",
+        "text": "CustomizeMagnifierPage"
       }
     ]
   }
