@@ -28,6 +28,20 @@ export const lsxmMagnifierDefaultPageProps = buildProps({
   multiple: Boolean,
   // 表格远程查询函数
   tableRemoteMethod: Function,
+  /**
+   * @description true 组件渲染完成默认加载下拉数据
+   */
+  initLoad: {
+    type: Boolean,
+    default: true,
+  },
+  /**
+   * @description 初始化加载参数
+   */
+  initLoadParams: {
+    type: Object,
+    default: {},
+  },
 } as const)
 export type LsxmMagnifierDefaultPageProps = ExtractPropTypes<
   typeof lsxmMagnifierDefaultPageProps
@@ -38,5 +52,7 @@ export type LsxmMagnifierDefaultPagePropsPublic = __ExtractPublicPropTypes<
 export const lsxmMagnifierDefaultPageEmits = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   'lsxm-confirm': (val: any) => true,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  'sync-list-fun': (val: any) => true,
 }
 export type LsxmMagnifierDefaultPageEmits = typeof lsxmMagnifierDefaultPageEmits

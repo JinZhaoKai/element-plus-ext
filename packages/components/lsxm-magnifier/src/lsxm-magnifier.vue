@@ -10,6 +10,8 @@
       :remote-method="lsxmRemoteMethod"
       :loading="selectLoading"
       :style="{ width: '100%' }"
+      @focus="handleFocus"
+      @change="handleChange"
     >
       <div class="el-lsxm-magnifier-dropdown__item">
         <el-row>
@@ -23,7 +25,12 @@
         </el-row>
       </div>
       <template #label="{ label, value }">
-        <slot name="custom-label" :label="label" :value="value" :row="row">
+        <slot
+          name="custom-label"
+          :label="label"
+          :value="value"
+          :row="getRow(value)"
+        >
           {{ label }}
         </slot>
       </template>
@@ -65,6 +72,9 @@
       :table-height="tableHeight"
       :table-remote-method="tableRemoteMethod"
       :lsxm-confirm="handleLsxmConfirm"
+      :sync-list-fun="handleSyncListFun"
+      :init-load="initLoad"
+      :init-load-params="initLoadParams"
     />
   </div>
 </template>
@@ -74,7 +84,6 @@ import { computed, ref, useAttrs, watch } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import { lsxmMagnifierEmits, lsxmMagnifierProps } from './lsxm-magnifier'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
-import { isObject } from '@element-plus/utils'
 
 defineOptions({
   name: 'ElLsxmMagnifier',
@@ -85,25 +94,57 @@ const props = defineProps(lsxmMagnifierProps)
 
 const magnifierValue: any = ref(props.modelValue)
 const dialogVisible = ref(false)
-const searchParams: any = ref({})
-const options: any = ref([])
-const total = ref(0)
-
-const emit = defineEmits(lsxmMagnifierEmits)
+const initOptions: any = ref([])
+const basicOptions: any = ref([])
+const enableInitParams = ref(true)
 
 const row = computed(() => {
-  const index = options.value.findIndex((item) => {
-    if (isObject(magnifierValue.value)) {
-      const valueKey = attrs['value-key']
-      return (
-        item[props.lsxmValueKey][valueKey] === magnifierValue.value[valueKey]
-      )
-    } else {
-      return item[props.lsxmValueKey] === magnifierValue.value
-    }
-  })
-  return index > -1 ? options.value[index] : null
+  const multiple = attrs.multiple
+  if (multiple === '' || Boolean(multiple)) {
+    return options.value.filter((item) => {
+      return magnifierValue.value.some((selItem) => {
+        const valueKey = attrs['value-key']
+        if (valueKey) {
+          return item[props.lsxmValueKey][valueKey] === selItem[valueKey]
+        } else {
+          return item[props.lsxmValueKey] === selItem
+        }
+      })
+    })
+  }
+  return getRow(magnifierValue.value)
 })
+
+const options = computed({
+  get() {
+    return basicOptions.value.concat(initOptions.value).reduce((acc, item) => {
+      const res = acc.some((obj) => {
+        const valueKey = attrs['value-key']
+        if (valueKey) {
+          return (
+            obj[props.lsxmValueKey][valueKey] ===
+            item[props.lsxmValueKey][valueKey]
+          )
+        } else {
+          return obj[props.lsxmValueKey] === item[props.lsxmValueKey]
+        }
+      })
+      if (!res) {
+        acc.push(item)
+      }
+      return acc
+    }, [])
+  },
+  set(val) {
+    if (enableInitParams.value) {
+      initOptions.value = val
+    } else {
+      basicOptions.value = val
+    }
+  },
+})
+
+const emit = defineEmits(lsxmMagnifierEmits)
 
 watch(
   () => props.modelValue,
@@ -117,30 +158,36 @@ watch(magnifierValue, () => {
   emit(CHANGE_EVENT, magnifierValue.value)
 })
 
-/**
- * 初始化查询参数
- */
-function initSearchParams() {
-  const obj: any = {}
-  props.searchParamProp.forEach((item) => {
-    obj[item.value] = null
-  })
-  searchParams.value = obj
-}
+watch(
+  () => props.initLoad,
+  (nv) => {
+    if (nv) {
+      lsxmRemoteMethod('')
+    }
+  },
+  {
+    immediate: true,
+  }
+)
 
 function lsxmRemoteMethod(query: any) {
   const remoteMethod = attrs['remote-method']
   if (remoteMethod && typeof remoteMethod === 'function') {
-    remoteMethod(query, (array: any, pageInfo: any) => {
-      if (Array.isArray(array)) {
-        options.value = array
-        total.value = pageInfo.total
-      } else {
-        console.error(
-          '[Element Error][Autocomplete]autocomplete suggestions must be an array'
-        )
+    remoteMethod(
+      query,
+      (array: any) => {
+        if (Array.isArray(array)) {
+          options.value = array
+        } else {
+          console.error(
+            '[Element Error][Autocomplete]autocomplete suggestions must be an array'
+          )
+        }
+      },
+      {
+        initLoadParams: enableInitParams.value ? props.initLoadParams : {},
       }
-    })
+    )
   }
 }
 
@@ -155,6 +202,7 @@ function handleLsxmConfirm(tabSelVal: any) {
     magnifierValue.value = val
     emit(UPDATE_MODEL_EVENT, val)
     emit(CHANGE_EVENT, val)
+    handleChange()
     dialogVisible.value = false
 
     if (attrs && attrs.select) {
@@ -166,7 +214,34 @@ function handleLsxmConfirm(tabSelVal: any) {
   }
 }
 
-initSearchParams()
-lsxmRemoteMethod('')
+function getRow(value) {
+  const index = options.value.findIndex((item) => {
+    const valueKey = attrs['value-key']
+    if (valueKey) {
+      return item[props.lsxmValueKey][valueKey] === value[valueKey]
+    } else {
+      return item[props.lsxmValueKey] === value
+    }
+  })
+  return index > -1 ? options.value[index] : null
+}
+
+function handleSyncListFun(array) {
+  if (Array.isArray(array) && array.length > 0) {
+    basicOptions.value = array
+  }
+}
+
+function handleFocus() {
+  enableInitParams.value = false
+}
+
+function handleChange() {
+  const value = row.value
+  if (value) {
+    initOptions.value = Array.isArray(value) ? value : [value]
+  }
+}
+
 // init here
 </script>

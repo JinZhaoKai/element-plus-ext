@@ -17,7 +17,10 @@
         :multiple="attrs.multiple"
         :table-height="tableHeight"
         :table-remote-method="tableRemoteMethod"
+        :init-load="initLoad"
+        :init-load-params="initLoadParams"
         @lsxm-confirm="lsxmConfirm"
+        @sync-list-fun="syncListFun"
       />
       <template #footer>
         <el-button @click="onCancel">取 消</el-button>

@@ -21,6 +21,22 @@ lsxm-magnifier/basic-usage
 
 :::
 
+## custom label
+
+:::demo You can customize label.
+
+lsxm-magnifier/custom-label
+
+:::
+
+## value obj
+
+:::demo Value is object.
+
+lsxm-magnifier/value-obj
+
+:::
+
 ## Select API
 
 ### Extends Select Attributes
@@ -66,3 +82,9 @@ lsxm-magnifier/basic-usage
 | remove-tag | triggers when a tag is removed in multiple mode | ^[Function]`(tagValue: any) => void`     |
 | blur       | triggers when Input blurs                       | ^[Function]`(event: FocusEvent) => void` |
 | focus      | triggers when Input focuses                     | ^[Function]`(event: FocusEvent) => void` |
+
+### Lsxm Select Slots
+
+| Name                       | Description             | Subtags |
+| -------------------------- | ----------------------- | ------- |
+| custom-label ^(2.10.5-0.5) | content as Select label | —       |

@@ -8,6 +8,7 @@
       >
         <el-input
           v-model="(searchParams as any)[item.value]"
+          clearable
           @blur="startSearch"
         />
       </el-form-item>
@@ -55,7 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import {
   lsxmMagnifierDefaultPageEmits,
   lsxmMagnifierDefaultPageProps,
@@ -84,15 +85,29 @@ const pagination = ref({
 
 const emit = defineEmits(lsxmMagnifierDefaultPageEmits)
 
+watch(
+  () => props.initLoad,
+  (nv) => {
+    if (nv) {
+      initSearchParams(props.initLoadParams)
+      loadTableData()
+    }
+  },
+  {
+    immediate: true,
+  }
+)
+
 /**
  * 初始化查询参数
+ * @param initParams
  */
-function initSearchParams() {
+function initSearchParams(initParams) {
   const obj: any = {}
   props.searchParamProp.forEach((item) => {
     obj[item.value] = null
   })
-  searchParams.value = obj
+  searchParams.value = Object.assign(obj, initParams)
 }
 
 function tableSelectionChange(selection: any) {
@@ -155,6 +170,7 @@ function loadTableData() {
         }
       }
       tableData.value = list
+      emit('sync-list-fun', list)
       loading.value = false
     })
   }
@@ -190,7 +206,5 @@ defineExpose({
   triggerLsxmConfirm,
 })
 
-initSearchParams()
-loadTableData()
 // init here
 </script>

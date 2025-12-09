@@ -93,6 +93,20 @@ export const lsxmMagnifierProps = buildProps({
    * @description 表格远程查询函数
    */
   tableRemoteMethod: Function,
+  /**
+   * @description true 组件渲染完成默认加载下拉数据
+   */
+  initLoad: {
+    type: Boolean,
+    default: true,
+  },
+  /**
+   * @description 初始化加载参数
+   */
+  initLoadParams: {
+    type: Object,
+    default: {},
+  },
 } as const)
 export type LsxmMagnifierProps = ExtractPropTypes<typeof lsxmMagnifierProps>
 export type LsxmMagnifierPropsPublic = __ExtractPublicPropTypes<
@@ -102,9 +116,6 @@ export type LsxmMagnifierPropsPublic = __ExtractPublicPropTypes<
 export const lsxmMagnifierEmits = {
   [UPDATE_MODEL_EVENT]: (val: LsxmMagnifierProps['modelValue']) => true,
   [CHANGE_EVENT]: (val: LsxmMagnifierProps['modelValue']) => true,
-  'remove-tag': (val: unknown) => true,
-  focus: (evt: FocusEvent) => evt instanceof FocusEvent,
-  blur: (evt: FocusEvent) => evt instanceof FocusEvent,
 }
 /* eslint-enable @typescript-eslint/no-unused-vars */
 export type LsxmMagnifierEmits = typeof lsxmMagnifierEmits

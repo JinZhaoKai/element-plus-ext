@@ -54,6 +54,25 @@ export const lsxmMagnifierDialogProps = buildProps({
     type: Function,
     required: true,
   },
+  // 同步列表数据
+  syncListFun: {
+    type: Function,
+    required: true,
+  },
+  /**
+   * @description true 组件渲染完成默认加载下拉数据
+   */
+  initLoad: {
+    type: Boolean,
+    default: true,
+  },
+  /**
+   * @description 初始化加载参数
+   */
+  initLoadParams: {
+    type: Object,
+    default: {},
+  },
 } as const)
 export type LsxmMagnifierDialogProps = ExtractPropTypes<
   typeof lsxmMagnifierDialogProps
