@@ -22,6 +22,11 @@
           </el-col>
         </el-row>
       </div>
+      <template #label="{ label, value }">
+        <slot name="custom-label" :label="label" :value="value" :row="row">
+          {{ label }}
+        </slot>
+      </template>
       <el-option
         v-for="item in options"
         :key="item[lsxmValueKey]"
@@ -65,10 +70,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, useAttrs, watch } from 'vue'
+import { computed, ref, useAttrs, watch } from 'vue'
 import { Search } from '@element-plus/icons-vue'
 import { lsxmMagnifierEmits, lsxmMagnifierProps } from './lsxm-magnifier'
 import { CHANGE_EVENT, UPDATE_MODEL_EVENT } from '@element-plus/constants'
+import { isObject } from '@element-plus/utils'
 
 defineOptions({
   name: 'ElLsxmMagnifier',
@@ -84,6 +90,20 @@ const options: any = ref([])
 const total = ref(0)
 
 const emit = defineEmits(lsxmMagnifierEmits)
+
+const row = computed(() => {
+  const index = options.value.findIndex((item) => {
+    if (isObject(magnifierValue.value)) {
+      const valueKey = attrs['value-key']
+      return (
+        item[props.lsxmValueKey][valueKey] === magnifierValue.value[valueKey]
+      )
+    } else {
+      return item[props.lsxmValueKey] === magnifierValue.value
+    }
+  })
+  return index > -1 ? options.value[index] : null
+})
 
 watch(
   () => props.modelValue,
