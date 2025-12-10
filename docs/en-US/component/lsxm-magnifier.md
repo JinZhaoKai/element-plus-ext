@@ -37,6 +37,14 @@ lsxm-magnifier/value-obj
 
 :::
 
+## init data
+
+:::demo Initialization data.
+
+lsxm-magnifier/init-data
+
+:::
+
 ## Select API
 
 ### Extends Select Attributes
@@ -73,6 +81,8 @@ lsxm-magnifier/value-obj
 | custom-page-component | Custom Dialog Component Name                                                                                                                                                                                                                                                                    | ^[string]                                                     | —       |
 | select-loading        | Whether data is being fetched remotely                                                                                                                                                                                                                                                          | ^[boolean]                                                    | —       |
 | table-remote-method   | The remote search method of the magnifying glass dialog box Table, the first parameter is the query parameter; The second parameter is a callback function, which is used to return the data queried by the interface. cb callback function parameter list Function(list, total)                | ^[Function]`(searchParams: Object, cb: Function) => void`     | —       |
+| init-load             | Initialization Status                                                                                                                                                                                                                                                                           | ^[boolean]                                                    | true    |
+| init-load-params      | Initialization Parameters                                                                                                                                                                                                                                                                       | ^[object]                                                     | {}      |
 
 ### Extends Select Events
 

@@ -10,7 +10,6 @@
     placeholder="请输入"
     :remote-method="handleQuerySearchAsync"
     :table-remote-method="handleQueryTableSearchAsync"
-    :custom-label-method="handleCustomLabelMethod"
   >
     <template #custom-label="{ label, row }">
       <span style="font-weight: bold">{{ row ? row.code : label }}</span>
@@ -144,11 +143,6 @@ function handleQueryTableSearchAsync(searchParams, cb) {
       )
     }, 1000)
   }
-}
-
-function handleCustomLabelMethod({ label, value }, row) {
-  console.log(label, value, row)
-  return label
 }
 
 load()

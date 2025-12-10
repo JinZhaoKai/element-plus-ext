@@ -1,20 +1,22 @@
 <template>
   <el-lsxm-magnifier
     v-model="value"
-    lsxm-value-key="obj"
+    lsxm-value-key="id"
     label-key="name"
-    value-key="id"
+    multiple
     :search-param-prop="magnifierOptions.searchParamProp"
     :table-column-prop="magnifierOptions.tableColumnProp"
     :select-loading="magnifierOptions.loading"
+    :init-load="magnifierOptions.initLoad"
+    :init-load-params="magnifierOptions.initLoadParams"
     table-height="400px"
     placeholder="请输入"
     :remote-method="handleQuerySearchAsync"
     :table-remote-method="handleQueryTableSearchAsync"
   >
     <template #custom-label="{ label, row }">
-      <span style="font-weight: bold">{{
-        row ? row.code + '~' + row.name + '~' + row.obj.id : label
+      <span style="color: red">{{
+        row ? row.code + '~' + row.name : label
       }}</span>
     </template>
   </el-lsxm-magnifier>
@@ -23,7 +25,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const value = ref({ id: 1, label: 'Alabama' })
+const value = ref(['Wyoming'])
 const magnifierOptions = ref({
   searchParamProp: [
     {
@@ -44,12 +46,10 @@ const magnifierOptions = ref({
       label: '名称',
       value: 'name',
     },
-    {
-      label: '对象',
-      value: 'obj',
-    },
   ],
   loading: false,
+  initLoad: false,
+  initLoadParams: {},
 })
 const list = ref([])
 const states = ref([
@@ -112,18 +112,18 @@ function load() {
     return {
       id: item,
       code: `${item}`,
-      name: `${item}`,
-      obj: { id: index, label: item },
+      name: `${item}-1`,
     }
   })
 }
 
-function handleQuerySearchAsync(val, cb) {
+function handleQuerySearchAsync(val, cb, { initLoadParams }) {
   handleQueryTableSearchAsync(
     {
       start: 0,
       limit: 20,
       name: val,
+      ...initLoadParams,
     },
     cb
   )
@@ -157,5 +157,20 @@ function handleQueryTableSearchAsync(searchParams, cb) {
   }
 }
 
+/**
+ * 模拟详情页加载远程数据
+ */
+function handleGetView() {
+  setTimeout(() => {
+    // 假设这是详情接口返回的值生成的对象
+    magnifierOptions.value.initLoadParams = {
+      name: 'Wyoming',
+    }
+    // 设置放大镜开始加载
+    magnifierOptions.value.initLoad = true
+  }, 1000)
+}
+
 load()
+handleGetView()
 </script>
