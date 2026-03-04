@@ -247,13 +247,16 @@ export function useDragNodeHandler({
     dragState.value.allowDrop = true
   }
 
-  provide(dragEventsKey, {
+  const treeEvents = {
     treeNodeDragStart,
     treeNodeDragOver,
     treeNodeDragEnd,
-  })
+  }
+
+  provide(dragEventsKey, treeEvents)
 
   return {
     dragState,
+    treeEvents,
   }
 }
