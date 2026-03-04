@@ -102,7 +102,7 @@ watch(
  * 初始化查询参数
  * @param initParams
  */
-function initSearchParams(initParams) {
+function initSearchParams(initParams: any) {
   const obj: any = {}
   props.searchParamProp.forEach((item) => {
     obj[item.value] = null

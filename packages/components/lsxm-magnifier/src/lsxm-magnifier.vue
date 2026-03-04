@@ -101,9 +101,9 @@ const enableInitParams = ref(true)
 const row = computed(() => {
   const multiple = attrs.multiple
   if (multiple === '' || Boolean(multiple)) {
-    return options.value.filter((item) => {
-      return magnifierValue.value.some((selItem) => {
-        const valueKey = attrs['value-key']
+    return options.value.filter((item: any) => {
+      return magnifierValue.value.some((selItem: any) => {
+        const valueKey: any = attrs['value-key']
         if (valueKey) {
           return item[props.lsxmValueKey][valueKey] === selItem[valueKey]
         } else {
@@ -117,23 +117,25 @@ const row = computed(() => {
 
 const options = computed({
   get() {
-    return basicOptions.value.concat(initOptions.value).reduce((acc, item) => {
-      const res = acc.some((obj) => {
-        const valueKey = attrs['value-key']
-        if (valueKey) {
-          return (
-            obj[props.lsxmValueKey][valueKey] ===
-            item[props.lsxmValueKey][valueKey]
-          )
-        } else {
-          return obj[props.lsxmValueKey] === item[props.lsxmValueKey]
+    return basicOptions.value
+      .concat(initOptions.value)
+      .reduce((acc: any, item: any) => {
+        const res = acc.some((obj: any) => {
+          const valueKey: any = attrs['value-key']
+          if (valueKey) {
+            return (
+              obj[props.lsxmValueKey][valueKey] ===
+              item[props.lsxmValueKey][valueKey]
+            )
+          } else {
+            return obj[props.lsxmValueKey] === item[props.lsxmValueKey]
+          }
+        })
+        if (!res) {
+          acc.push(item)
         }
-      })
-      if (!res) {
-        acc.push(item)
-      }
-      return acc
-    }, [])
+        return acc
+      }, [])
   },
   set(val) {
     if (enableInitParams.value) {
@@ -214,9 +216,9 @@ function handleLsxmConfirm(tabSelVal: any) {
   }
 }
 
-function getRow(value) {
-  const index = options.value.findIndex((item) => {
-    const valueKey = attrs['value-key']
+function getRow(value: any) {
+  const index = options.value.findIndex((item: any) => {
+    const valueKey: any = attrs['value-key']
     if (valueKey) {
       return item[props.lsxmValueKey][valueKey] === value[valueKey]
     } else {
@@ -226,7 +228,7 @@ function getRow(value) {
   return index > -1 ? options.value[index] : null
 }
 
-function handleSyncListFun(array) {
+function handleSyncListFun(array: any) {
   if (Array.isArray(array) && array.length > 0) {
     basicOptions.value = array
   }
