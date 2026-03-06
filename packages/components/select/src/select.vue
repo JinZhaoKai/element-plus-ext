@@ -248,6 +248,7 @@
             >
               <component :is="validateIcon" />
             </el-icon>
+            <slot name="suffix-inner" />
           </div>
         </div>
       </template>

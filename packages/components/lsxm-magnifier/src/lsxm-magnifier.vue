@@ -50,7 +50,7 @@
           </el-col>
         </el-row>
       </el-option>
-      <template #suffix>
+      <template #suffix-inner>
         <el-icon
           class="el-lsxm-magnifier-search-icon"
           @click.stop="dialogVisible = true"
