@@ -21,6 +21,14 @@ lsxm-magnifier/basic-usage
 
 :::
 
+## Basic multiple
+
+:::demo 适用性较广的基础多选，用 Tag 展示已选项.
+
+lsxm-magnifier/basic-multiple
+
+:::
+
 ## custom label
 
 :::demo You can customize label.
