@@ -23,9 +23,17 @@ lsxm-magnifier/basic-usage
 
 ## Basic multiple
 
-:::demo 适用性较广的基础多选，用 Tag 展示已选项.
+:::demo A wide range of basic multi-selection, with Tag to show the selected options.
 
 lsxm-magnifier/basic-multiple
+
+:::
+
+## clearable
+
+:::demo Set `clearable` attribute for `el-lsxm-magnifier` and a clear icon will appear.
+
+lsxm-magnifier/clearable
 
 :::
 
@@ -64,6 +72,7 @@ lsxm-magnifier/init-data
 | disabled              | whether Select is disabled                                                                                                               | ^[boolean]                                                | false   |
 | value-key             | unique identity key name for value, required when value is an object                                                                     | ^[string]                                                 | value   |
 | size                  | size of Input                                                                                                                            | ^[enum]`'' \| 'large' \| 'default' \| 'small'`            | —       |
+| clearable             | whether select can be cleared                                                                                                            | ^[boolean]                                                | false   |
 | collapse-tags         | whether to collapse tags to a text when multiple selecting                                                                               | ^[boolean]                                                | false   |
 | multiple-limit        | maximum number of options user can select when `multiple` is `true`. No limit when set to 0                                              | ^[number]                                                 | 0       |
 | name                  | the name attribute of select input                                                                                                       | ^[string]                                                 | —       |

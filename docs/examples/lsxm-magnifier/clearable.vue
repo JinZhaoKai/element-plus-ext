@@ -4,6 +4,7 @@
     lsxm-value-key="id"
     label-key="name"
     multiple
+    clearable
     :search-param-prop="magnifierOptions.searchParamProp"
     :table-column-prop="magnifierOptions.tableColumnProp"
     :select-loading="magnifierOptions.loading"
